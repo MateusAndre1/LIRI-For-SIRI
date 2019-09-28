@@ -87,10 +87,39 @@ function movieThis(input) {
         });
 }
 
+// use fs to manipulate random.txt file
+
 function doWhatItSays() {
 
-}
+    fs.readFile("random.txt", "utf8", (err, data) => {
+        if (err) {
+            throw err;
+        }
 
+        // split the data in the random.txt file by the ,
+
+        var dataInput = data.split(",");
+
+        // target the first and second value with switch function
+
+        whatToDo = dataInput[0];
+        
+        userInput = dataInput[1];
+
+        switch (whatToDo) {
+            case "spotify-this-song":
+                spotifyThis(userInput);
+                break;
+            case "concert-this":
+                concertThis(userInput);
+                break;
+            case "movie-this":
+                movieThis(userInput);
+                break;
+        }
+
+    });
+}
 // give different cases for which function to call up
 
 switch (whatToDo) {
