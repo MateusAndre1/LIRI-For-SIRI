@@ -21,10 +21,12 @@ function spotifyThis(input) {
             limit: 1
         })
         .then(function (response) {
+            let artist = response.tracks.items[0].artists[0].name;
+            let songName = response.tracks.items[0].name;
+            let previewLink = response.tracks.items[0].external_urls.spotify;
+            let albumName = response.tracks.items[0].album.name;
             console.log("\n=====================================\n");
-            console.log(JSON.stringify(response.tracks.items[0].artists[0].name));
-            console.log(JSON.stringify(response.tracks.items[0].name));
-            console.log(JSON.stringify(response.tracks));
+            console.log(`\nArtist: ${artist}\nSong: ${songName}\nAlbum: ${albumName}\nLink to song: ${previewLink}`);
             console.log("\n=====================================\n");
             
         })
