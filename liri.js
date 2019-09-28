@@ -18,17 +18,20 @@ function spotifyThis(input) {
         .search({
             type: 'track',
             query: input,
-            limit: 1
+            limit: 5
         })
         .then(function (response) {
-            let artist = response.tracks.items[0].artists[0].name;
-            let songName = response.tracks.items[0].name;
-            let previewLink = response.tracks.items[0].external_urls.spotify;
-            let albumName = response.tracks.items[0].album.name;
+
+            for (let i = 0; i < response.tracks.items.length; i++) {
+                        
+            let artist = response.tracks.items[i].artists[0].name;
+            let songName = response.tracks.items[i].name;
+            let previewLink = response.tracks.items[i].external_urls.spotify;
+            let albumName = response.tracks.items[i].album.name;
             console.log("\n=====================================\n");
             console.log(`\nArtist: ${artist}\nSong: ${songName}\nAlbum: ${albumName}\nLink to song: ${previewLink}`);
             console.log("\n=====================================\n");
-            
+        }
         })
         .catch(function (err) {
             console.log(err);
