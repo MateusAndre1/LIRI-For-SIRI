@@ -32,6 +32,9 @@ function spotifyThis(input) {
                     let songName = response.tracks.items[i].name;
                     let previewLink = response.tracks.items[i].external_urls.spotify;
                     let albumName = response.tracks.items[i].album.name;
+
+                    // allow txtDatInfo to grab userInput2 from userInput so it grabs and appends the song from random.txt
+                    userInput2 = userInput;
                     let appendInfo = `\nArtist: ${artist}\nSong: ${songName}\nAlbum: ${albumName}\nLink to song: ${previewLink}`;
                     txtDatInfo(appendInfo);
                     console.log("\n=====================================\n");
@@ -126,6 +129,8 @@ function doWhatItSays() {
 
     });
 }
+
+// allow search results to be grabbed and saved to log.txt
 
 let txtDatInfo = function (input) {
     fs.appendFile("log.txt", `\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n${whatToDo} | ${userInput2}\n${input}\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n`, function (err) {
