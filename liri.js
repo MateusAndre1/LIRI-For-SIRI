@@ -152,6 +152,6 @@ switch (whatToDo) {
         movieThis(userInput);
         break;
     case "do-what-it-says":
-        doWhatItSays(userInput);
+        doWhatItSays(userInput2);
         break;
 }
