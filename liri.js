@@ -32,6 +32,8 @@ function spotifyThis(input) {
                     let songName = response.tracks.items[i].name;
                     let previewLink = response.tracks.items[i].external_urls.spotify;
                     let albumName = response.tracks.items[i].album.name;
+                    let appendInfo = `\nArtist: ${artist}\nSong: ${songName}\nAlbum: ${albumName}\nLink to song: ${previewLink}`;
+                    txtDatInfo(appendInfo);
                     console.log("\n=====================================\n");
                     console.log(`\nArtist: ${artist}\nSong: ${songName}\nAlbum: ${albumName}\nLink to song: ${previewLink}`);
                     console.log("\n=====================================\n");
@@ -54,6 +56,8 @@ function concertThis(input) {
                 let venueName = response.data[0].venue.name;
                 let venueLocation = response.data[0].venue.city + ", " + response.data[0].venue.region;
                 let date = moment(response.data[0].datetime).format("MM/DD/YYYY");
+                let appendInfo = `\nCurrent Concert Information For: ${userInput2}\nConcert Venue: ${venueName}\nVenue Location: ${venueLocation}\nConcert Date: ${date}`;
+                txtDatInfo(appendInfo);
                 console.log("\n=====================================\n");
                 console.log(`\nCurrent Concert Information For: ${userInput2}\nConcert Venue: ${venueName}\nVenue Location: ${venueLocation}\nConcert Date: ${date}`);
                 console.log("\n=====================================\n");
@@ -78,6 +82,8 @@ function movieThis(input) {
                 let plot = response.data.Plot;
                 let countryProduced = response.data.Country;
                 let actors = response.data.Actors;
+                let appendInfo = `\nTitle: ${title}\n Year Released: ${yearReleased}\nIMBD Rating: ${rating}\nRotten Tomatoes Rating: ${rottenTom}\nCountry Produced In: ${countryProduced}\nLanguage: ${language}\nPlot: ${plot}\nActors: ${actors}`;
+                txtDatInfo(appendInfo);
                 console.log("\n=====================================\n");
                 console.log(`\nTitle: ${title}\n Year Released: ${yearReleased}\nIMBD Rating: ${rating}\nRotten Tomatoes Rating: ${rottenTom}\nCountry Produced In: ${countryProduced}\nLanguage: ${language}\nPlot: ${plot}\nActors: ${actors}`);
                 console.log("\n=====================================\n");
@@ -103,7 +109,7 @@ function doWhatItSays() {
         // target the first and second value with switch function
 
         whatToDo = dataInput[0];
-        
+
         userInput = dataInput[1];
 
         switch (whatToDo) {
@@ -120,6 +126,19 @@ function doWhatItSays() {
 
     });
 }
+
+let txtDatInfo = function (input) {
+    fs.appendFile("log.txt", `\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n${whatToDo} | ${userInput2}\n${input}\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n`, function (err) {
+
+        if (err) {
+            console.log(err);
+        } else {
+            // console.log("Content Added!");
+        }
+
+    });
+}
+
 // give different cases for which function to call up
 
 switch (whatToDo) {
